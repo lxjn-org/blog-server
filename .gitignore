@@ -21,3 +21,24 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Maven 和 Gradle 构建产物
+target/
+.gradle/
+build/
+!/.mvn/wrapper/maven-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.jar
+
+# 本地环境变量和运行日志
+.env
+.env.*
+!.env.example
+!.env.*.example
+logs/
+*.pid
+
+# IDE 和系统生成文件
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
