@@ -1,0 +1,51 @@
+server:
+  port: ${BLOG_SERVER_PORT:8080}
+  servlet:
+    context-path: /api/admin
+
+spring:
+  application:
+    name: blog-server
+  config:
+    import: "optional:file:${BLOG_SETUP_CONFIG:./data/setup.properties}"
+  profiles:
+    default: sqlite
+  sql:
+    init:
+      mode: never
+  datasource:
+    url: ${BLOG_JDBC_URL:}
+    username: ${BLOG_DB_USER:}
+    password: ${BLOG_DB_PASSWORD:}
+    hikari:
+      initialization-fail-timeout: -1
+      connection-timeout: 3000
+  data:
+    redis:
+      host: ${BLOG_REDIS_HOST:localhost}
+      port: ${BLOG_REDIS_PORT:6379}
+      timeout: 1s
+      connect-timeout: 1s
+  cache:
+    type: ${BLOG_CACHE_TYPE:none}
+    redis:
+      time-to-live: 5m
+      cache-null-values: false
+
+blog:
+  setup:
+    username: ${BLOG_SETUP_USERNAME:admin}
+    password: ${BLOG_SETUP_PASSWORD:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  health:
+    redis:
+      enabled: false
+
+logging:
+  pattern:
+    level: "%5p [requestId=%X{requestId}]"

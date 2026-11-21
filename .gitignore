@@ -24,6 +24,8 @@ hs_err_pid*
 
 # Maven 和 Gradle 构建产物
 target/
+/.maven-cache/
+/data/
 .gradle/
 build/
 !/.mvn/wrapper/maven-wrapper.jar
